@@ -42,7 +42,7 @@ func printVXX(expireDates []time.Time) {
 	fmt.Println()
 
 	fmt.Println("VXX売り複製")
-	fmt.Println("PUT Delta 0.8を購入する")
+	fmt.Println("PUT Delta 0.9を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})
@@ -56,7 +56,7 @@ func printVXX(expireDates []time.Time) {
 
 func printVXZ(expireDates []time.Time) {
 	fmt.Println("VXZ買い複製")
-	fmt.Println("CALL Delta 0.8を購入する")
+	fmt.Println("CALL Delta 0.9を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})

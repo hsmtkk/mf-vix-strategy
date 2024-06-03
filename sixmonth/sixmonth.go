@@ -23,7 +23,7 @@ func run(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("PUT Delta 0.8を購入する")
+	fmt.Println("PUT Delta 0.9を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"限月", "最終取引日"})
