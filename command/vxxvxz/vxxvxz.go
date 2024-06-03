@@ -13,6 +13,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const TOTAL_QUANTITY = 5
+const VXZ_START_INDEX = 2
+
 var Command = &cobra.Command{
 	Use: "vxxvxz",
 	Run: run,
@@ -34,20 +37,15 @@ func printVXX(expireDates []time.Time) {
 
 	restWeeks := weekstofirstmonth.CalculateWeeksToFirstMonth(expireDates[0])
 	fmt.Printf("第1限月満期までの残り週数: %d\n", restWeeks)
-	// 残り5週の場合には4に補正する
-	if restWeeks > 4 {
-		fmt.Println("残4週として処理する")
-		restWeeks = 4
-	}
 	firstMonthPuts := restWeeks
-	secondMonthPuts := 4 - restWeeks
+	secondMonthPuts := TOTAL_QUANTITY - restWeeks
 	fmt.Println()
 
 	fmt.Println("VXX売り複製")
-	fmt.Println("以下PUT Delta 0.9を購入する")
+	fmt.Println("PUT Delta 0.8を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"限月", "満期", "枚数"})
+	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})
 	t.AppendSeparator()
 	t.AppendRows([]table.Row{
 		{1, firstMonth.Format(config.DATE_FORMAT), firstMonthPuts},
@@ -58,12 +56,12 @@ func printVXX(expireDates []time.Time) {
 
 func printVXZ(expireDates []time.Time) {
 	fmt.Println("VXZ買い複製")
-	fmt.Println("以下CALL Delta 0.9を購入する")
+	fmt.Println("CALL Delta 0.8を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"限月", "満期", "枚数"})
+	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})
 	t.AppendSeparator()
-	for i := 3; i < 7; i++ {
+	for i := VXZ_START_INDEX; i < VXZ_START_INDEX+TOTAL_QUANTITY; i++ {
 		t.AppendRow([]interface{}{i + 1, expireDates[i].Format(config.DATE_FORMAT), 1})
 	}
 	t.Render()
