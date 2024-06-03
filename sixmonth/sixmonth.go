@@ -11,6 +11,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const MONTHS = 6
+
 var Command = &cobra.Command{
 	Use: "sixmonth",
 	Run: run,
@@ -26,7 +28,7 @@ func run(cmd *cobra.Command, args []string) {
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"限月", "満期"})
 	t.AppendSeparator()
-	for i := 0; i < 6; i++ {
+	for i := 0; i < MONTHS; i++ {
 		t.AppendRow(table.Row{i + 1, expireDates[i].Format(config.DATE_FORMAT)})
 	}
 	t.Render()
