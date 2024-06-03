@@ -23,10 +23,10 @@ func run(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("PUT Delta 0.9を購入する")
+	fmt.Println("Buy PUT Delta 0.8")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"限月", "満期"})
+	t.AppendHeader(table.Row{"Month number", "Last trade date"})
 	t.AppendSeparator()
 	for i := 0; i < MONTHS; i++ {
 		t.AppendRow(table.Row{i + 1, expireDates[i].Format(config.DATE_FORMAT)})
