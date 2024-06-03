@@ -40,10 +40,10 @@ func printPut(expireDates []time.Time, restWeeks int) {
 	firstMonth := expireDates[0]
 	secondMonth := expireDates[1]
 
-	fmt.Println("PUT Delta 0.9を購入する")
+	fmt.Println("PUT Delta 0.8を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"限月", "満期", "枚数"})
+	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})
 	t.AppendSeparator()
 	t.AppendRows([]table.Row{
 		{1, firstMonth.Format(config.DATE_FORMAT), firstPuts},
@@ -59,10 +59,10 @@ func printCall(expireDates []time.Time, restWeeks int) {
 	secondMonth := expireDates[1]
 	thirdMonth := expireDates[2]
 
-	fmt.Println("CALL Delta 0.9を購入する")
+	fmt.Println("CALL Delta 0.8を購入する")
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"限月", "満期", "枚数"})
+	t.AppendHeader(table.Row{"限月", "最終取引日", "枚数"})
 	t.AppendSeparator()
 	t.AppendRows([]table.Row{
 		{2, secondMonth.Format(config.DATE_FORMAT), secondCalls},

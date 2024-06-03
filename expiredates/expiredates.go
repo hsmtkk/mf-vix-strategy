@@ -31,6 +31,8 @@ func GetExpireDates() ([]time.Time, error) {
 		if t.Before(time.Now()) {
 			continue
 		}
+		// 最終取引日は満期の1日前
+		t = t.AddDate(0, 0, -1)
 		results = append(results, t)
 	}
 	// 最低でも8ヶ月分、入力済みとする
